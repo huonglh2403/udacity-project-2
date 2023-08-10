@@ -49,7 +49,3 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
       console.log( `server running http://localhost:${ port }` );
       console.log( `press CTRL+C to stop server` );
   } );
-
-
-  AKIAQDT7MUOXLSBFSCVO
-  njsv/a3lCQROK7dcaGMm768GVTv0EdKO4disDEfX
