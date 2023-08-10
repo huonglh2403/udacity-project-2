@@ -19,7 +19,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
   }
 
   export const router = express.Router();
-  router.get("/filteredimage", (req, res) => {
+  router.get("/filteredimage", async (req, res) => {
     let query = req.query;
     if (query == null)
     {
@@ -29,10 +29,16 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
     {
       return res.status(400).send("Wrong input query");
     }
-    
-    const filteredUrl = filterImageFromURL(query.image_url);
-    res.status(200).send("Image is valid");
-    return deleteLocalFiles(filteredUrl);
+
+    try {
+      const filteredImage = await filterImageFromURL(query.image_url);
+      res.sendFile(filteredImage, () => {
+        deleteLocalFiles([filteredImage]);
+      });
+    } catch (error) {
+      console.error("Error while filtering image:", error);
+      return res.status(500).send("Error while filtering the image.");
+    }
   })
   
   app.use(router);
