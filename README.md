@@ -25,4 +25,4 @@ Successful URL responses should have a 200 code. Ensure that you include error c
 
 
 ## URL
-http://project-2.us-east-1.elasticbeanstalk.com/
+http://project22.us-east-1.elasticbeanstalk.com/
